@@ -1,9 +1,14 @@
-const http = require('http');
+const express = require('express');
+const resources = require('./routes/resources');
 
-const server = http.createServer((req, res) => {
-    console.log(req);
-})
+const app = express();
+
+app.use(express.json());
+
+app.use('/api/resources', resources);
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
